@@ -95,8 +95,10 @@ namespace Amazon
                     TraceListener tracelistener = new UnityDebugTraceListener("UnityDebug");
                     AWSConfigs.AddTraceListener("Amazon", tracelistener);
 
+#if !UNITY_2019
                     // Associate the main thread dispatcher
                     _instance.gameObject.AddComponent<UnityMainThreadDispatcher>();
+#endif
 
 
                 }

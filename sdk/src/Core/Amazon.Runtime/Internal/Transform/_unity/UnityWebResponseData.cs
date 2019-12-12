@@ -24,6 +24,9 @@ using Amazon.Runtime.Internal.Util;
 using Logger = Amazon.Runtime.Internal.Util.Logger;
 using ILogger = Amazon.Runtime.Internal.Util.ILogger;
 using System.Text;
+#if UNITY_2019
+using System.Threading.Tasks;
+#endif
 
 namespace Amazon.Runtime.Internal.Transform
 {
@@ -256,6 +259,13 @@ namespace Amazon.Runtime.Internal.Transform
         {
             return _responseStream;
         }
+
+#if UNITY_2019
+        public Task<Stream> OpenResponseAsync()
+        {
+            return Task.FromResult( _responseStream );
+        }
+#endif
 
         /// <summary>
         /// Disposes the response stream.

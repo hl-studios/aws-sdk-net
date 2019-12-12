@@ -24,6 +24,9 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading;
+#if UNITY_2019
+using System.Threading.Tasks;
+#endif
 using UnityEngine;
 
 namespace Amazon.Runtime.Internal
@@ -231,6 +234,37 @@ namespace Amazon.Runtime.Internal
         {
             // Not supported by the WWW API. 
         }
+
+#if UNITY_2019
+        public Task<string> GetRequestContentAsync()
+        {
+            return Task.FromResult( string.Empty );
+        }
+
+        public async Task<IWebResponseData> GetResponseAsync( CancellationToken cancellationToken )
+        {
+            this.IsSync = true;
+            this.WaitHandle = new ManualResetEvent(false);
+            try
+            {
+                UnityRequestQueue.Instance.EnqueueRequest(this);
+                await this.WaitHandle.AsTask();
+
+                if (this.Exception != null)
+                    throw this.Exception;
+
+                //timeout scenario
+                if (this.Exception == null && this.Response == null)
+                    throw new WebException("Request timed out", WebExceptionStatus.Timeout);
+
+                return this.Response;
+            }
+            finally
+            {
+                this.WaitHandle.Close();
+            }
+        }
+#endif
 
         /// <summary>
         /// Initiates the operation to gets a handle to the request content.

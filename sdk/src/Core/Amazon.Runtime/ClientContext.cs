@@ -100,7 +100,7 @@ namespace Amazon.Runtime.Internal
                 _env = new Dictionary<string, string>();
                 _services = new Dictionary<string, IDictionary>();
 
-#if PCL || UNITY
+#if PCL || UNITY || UNITY_2019
                  // client
                 _client.Add(CLIENT_ID_KEY, _clientID);
                 _client.Add(CLIENT_APP_TITLE_KEY, _appInfo.AppTitle);

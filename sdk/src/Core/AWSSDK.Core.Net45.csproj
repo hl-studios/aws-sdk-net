@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <DefineConstants>DEBUG;TRACE;;BCL;BCL45;AWS_ASYNC_API;CODE_ANALYSIS;LOCAL_FILE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;;BCL;BCL45;AWS_ASYNC_API;CODE_ANALYSIS;LOCAL_FILE;UNITY_2019</DefineConstants>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>AWSSDK.Core</AssemblyName>
     <PackageId>AWSSDK.Core</PackageId>
+    <OutputPath>bin\Debug\unity2019</OutputPath>
 
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -17,6 +18,10 @@
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 
     <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\unity2019</OutputPath>
   </PropertyGroup>
 
   <Choose>
@@ -47,6 +52,102 @@
     <Compile Remove="**/_winPhone81/**" />
     <Compile Remove="**/_winPhoneSilverlight8/**" />
     <Compile Remove="**/_winstorage/**" />
+    <Compile Remove="_bcl\**" />
+    <EmbeddedResource Remove="_bcl\**" />
+    <None Remove="_bcl\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Amazon.Runtime\Internal\Util\_bcl+sl\HashingWrapper.cs" />
+    <Compile Remove="Amazon.Runtime\_bcl\AWSSection.cs" />
+    <Compile Remove="Amazon.Runtime\_bcl\ClientContext.bcl.cs" />
+    <Compile Remove="Amazon.Util\Internal\PlatformServices\_bcl\ApplicationInfo.cs" />
+    <Compile Remove="Amazon.Util\Internal\PlatformServices\_bcl\ApplicationSettings.cs" />
+    <Compile Remove="Amazon.Util\Internal\PlatformServices\_bcl\EnvironmentInfo.cs" />
+    <Compile Remove="Amazon.Util\Internal\PlatformServices\_bcl\NetworkReachability.cs" />
+    <Compile Remove="Amazon.Util\Internal\_bcl\InternalSDKUtils.bcl.cs" />
+    <Compile Remove="Amazon.Util\Internal\_bcl\TypeWrapper.bcl.cs" />
+    <Compile Remove="Amazon.Util\_bcl\AWSConfigs.Models.bcl.cs" />
+    <Compile Remove="Amazon.Util\_bcl\AWSSDKUtils.bcl.cs" />
+    <Compile Remove="Amazon.Util\_bcl\CryptoUtil.bcl.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Amazon.Runtime\Internal\Transform\_unity\UnityWebResponseData.cs" />
+    <Compile Include="Amazon.Runtime\Internal\Util\_unity\HashingWrapper.unity.cs" />
+    <Compile Include="Amazon.Runtime\Internal\Util\_unity\ThreadPoolThrottler.cs" />
+    <Compile Include="Amazon.Runtime\Internal\Util\_unity\UnityDebugLogger.cs" />
+    <Compile Include="Amazon.Runtime\Internal\Util\_unity\UnityDebugTraceListener.cs" />
+    <Compile Include="Amazon.Runtime\Pipeline\HttpHandler\_unity\IUnityHttpRequest.cs" />
+    <Compile Include="Amazon.Runtime\Pipeline\HttpHandler\_unity\UnityWebRequestFactory.cs" />
+    <Compile Include="Amazon.Runtime\Pipeline\HttpHandler\_unity\UnityWwwRequestFactory.cs" />
+    <Compile Include="Amazon.Runtime\Pipeline\_unity\UnityRequestQueue.cs" />
+    <Compile Include="Amazon.Runtime\Pipeline\_unity\UnityWebRequestWrapper.cs" />
+    <Compile Include="Amazon.Runtime\_unity\AmazonResponseObject.cs" />
+    <Compile Include="Amazon.Runtime\_unity\AsyncOptions.cs" />
+    <Compile Include="Amazon.Runtime\_unity\AWSSection.unity.cs" />
+    <Compile Include="Amazon.Runtime\_unity\ClientContext.unity.cs" />
+    <Compile Include="Amazon.Util\Internal\PlatformServices\_unity\ApplicationInfo.cs" />
+    <Compile Include="Amazon.Util\Internal\PlatformServices\_unity\ApplicationSettings.cs" />
+    <Compile Include="Amazon.Util\Internal\PlatformServices\_unity\EnvironmentInfo.cs" />
+    <Compile Include="Amazon.Util\Internal\PlatformServices\_unity\NetworkReachability.cs" />
+    <Compile Include="Amazon.Util\Internal\_unity\AndroidInterop.cs" />
+    <Compile Include="Amazon.Util\Internal\_unity\InternalSDKUtils.unity.cs" />
+    <Compile Include="Amazon.Util\Internal\_unity\TypeWrapper.unity.cs" />
+    <Compile Include="Amazon.Util\_unity\AmazonHookedPlatformInfo.cs" />
+    <Compile Include="Amazon.Util\_unity\AWSConfigs.Models.unity.cs" />
+    <Compile Include="Amazon.Util\_unity\AWSSDKUtils.unity.cs" />
+    <Compile Include="Amazon.Util\_unity\CryptoUtil.unity.cs" />
+    <Compile Include="Amazon.Util\_unity\IO\Internal\NetworkInfo.cs" />
+    <Compile Include="Amazon.Util\_unity\Storage\Internal\PlayerPreferenceKVStore.cs" />
+    <Compile Include="Amazon.Util\_unity\Storage\KVStore.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\Callbacks.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\CGPoint.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\CGRect.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\CGSize.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\Delegates.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\EventArgs.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSBundle.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSData.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSDictionary.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSError.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSLocale.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSMutableDictionary.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSNotification.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSNotificationCenter.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSNumberFormatter.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSObject.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\NSTimeZone.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKPayment.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKPaymentQueue.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKPaymentTransaction.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKProduct.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKProductsRequest.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Foundation\SKProductsResponse.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Marshalers\NSDateMarshaler.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Marshalers\NSStringMarshaler.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Marshalers\NSUrlMarshaler.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Marshalers\SelectorMarshaler.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\ObjC.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Runtime.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\Selector.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\AdBannerView.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIActionSheet.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIActivityViewController.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIAlertView.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIApplication.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIDevice.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIImage.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UILocalNotification.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIPopoverController.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIScreen.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIScreenMode.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIUserNotificationSettings.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIView.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIViewController.cs" />
+    <Compile Include="ThirdParty\_unity\iOS4Unity\UIKit\UIWindow.cs" />
+    <Compile Include="_unity\AWSConfigs.unity.cs" />
+    <Compile Include="_unity\UnityInitializer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,5 +159,15 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Amazon.Runtime\Internal\Util\_bcl+sl\" />
+    <Folder Include="Amazon.Util\Internal\PlatformServices\_bcl\" />
+    <Folder Include="Amazon.Util\Internal\_bcl\" />
+    <Folder Include="Amazon.Util\_bcl\" />
   </ItemGroup>
 </Project>

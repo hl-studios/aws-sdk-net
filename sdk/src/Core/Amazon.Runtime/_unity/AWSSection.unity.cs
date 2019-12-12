@@ -21,6 +21,9 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+#if UNITY_2019
+using Amazon.Util.Internal;
+#endif
 
 namespace Amazon
 {
@@ -231,4 +234,23 @@ namespace Amazon
         }
     }
 
+#if UNITY_2019
+
+    /// <summary>
+    /// ConfigurationElement class which returns false for IsReadOnly
+    /// </summary>
+    public abstract class WritableConfigurationElement : ConfigurationElement
+    {
+        protected object this[ string key ]
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        protected void DeserializeElement( XmlReader reader, bool b )
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+#endif
 }
